@@ -8,4 +8,4 @@ fibonacci(N, F) :-
     N2 is N - 2,
     fibonacci(N1, F1),
     fibonacci(N2, F2),
-    F is F1 + F2. 
+    F is F1 + F2.
