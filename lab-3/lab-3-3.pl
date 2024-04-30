@@ -1,14 +1,10 @@
-% Напишите процедуры вычисления суммы элементов списка;
-% наибольшего элемента списка; наименьшего элемента списка без использования
-% встроенных соответствующих функций;
-
-% 1
+% Сумма элементов списка
 sum_list([], 0).
 
 sum_list([Head|Tail], Sum) :-
 	sum_list(Tail, TailSum), Sum is TailSum + Head.
 
-% 2
+% Наибольший элемента списка
 max_list([Max], Max).
 
 max_list([Head|Tail], Max) :-
@@ -17,7 +13,7 @@ max_list([Head|Tail], Max) :-
 max_list([Head|Tail], Max) :-
 	max_list(Tail, TailMax), Head =< TailMax, Max = TailMax.
 
-% 3
+% Наименьший элемента списка
 min_list([Min], Min).
 
 min_list([Head|Tail], Min) :-
