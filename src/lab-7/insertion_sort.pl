@@ -1,18 +1,13 @@
-insertion_sort([], []).
+insert_sort([H|L], S):-
+	insert_sort(L, S1), 
+	insert(H, S1, S).
+insert_sort([],[]).
 
-insertion_sort([X|Xs], Sorted) :-
-	insertion_sort(Xs, SortedTail), 
-	insert(X, SortedTail, Sorted).
-
-insert(X, [], [X]).
-
-insert(X, [Y|Ys], [X, Y|Ys]) :-
-	X =< Y.
-
-insert(X, [Y|Ys], [Y|SortedTail]) :-
-	X > Y, 
-	insert(X, Ys, SortedTail).
+insert(H, [A|S1], [A|S2]):-
+	A < H, !, 
+	insert(H, S1, S2).
+insert(H, S,[H | S]).
 
 main :-
-    insertion_sort([3, 1, 4, 1, 5, 9, 2, 6, 5], Sorted),
-    writeln(Sorted).
+	insert_sort([3, 2, 1, 4, 5], Sorted), 
+	writeln(Sorted).
