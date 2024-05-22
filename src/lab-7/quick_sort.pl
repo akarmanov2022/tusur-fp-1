@@ -1,23 +1,20 @@
+
+quick_sort([H|L], S):-
+	split(H, L, L1, L2), 
+	quick_sort(L1, S1), 
+	quick_sort(L2, S2), 
+	append(S1, [H|S2], S).
 quick_sort([], []).
-quick_sort([X], [X]).
 
-quick_sort([Pivot|Tail], Sorted) :-
-	partition(Pivot, Tail, Smaller, Greater), 
-	quick_sort(Smaller, SortedSmaller), 
-	quick_sort(Greater, SortedGreater), 
-	append(SortedSmaller, [Pivot|SortedGreater], Sorted).
+split(H, [A|LS], [A|L1], L2):-
+	A < H, 
+	split(H, LS, L1, L2), !.
 
-% Подсписок из элементов, меньших или равных Pivot
-partition(_, [], [], []).
-
-partition(Pivot, [X|Tail], [X|Smaller], Greater) :-
-	X =< Pivot, 
-	partition(Pivot, Tail, Smaller, Greater).
-
-partition(Pivot, [X|Tail], Smaller, [X|Greater]) :-
-	X > Pivot, 
-	partition(Pivot, Tail, Smaller, Greater).
+split(H, [A|LS], L1, [A|L2]):-
+	A >= H, 
+	split(H, LS, L1, L2), !.
+split(_, [], [], []).
 
 main :-
-	quick_sort([3, 1, 4, 1, 5, 9, 2, 6, 5], Sorted), 
+	quik_sort([3, 2, 1, 4, 5], Sortedc), 
 	writeln(Sorted).
